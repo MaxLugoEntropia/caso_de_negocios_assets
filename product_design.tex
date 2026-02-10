@@ -1,0 +1,396 @@
+\documentclass[11pt, a4paper]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+%\lhead{ \fancyplain{}{Ciencia de datos aplicada II} }
+%\chead{ \fancyplain{}{} }
+%\rhead{ \fancyplain{}{Primavera 2025}}
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section*{Ejercicio: Diseño de Producto}
+
+El objetivo de este ejercicio es que seas capaz de diseñar un producto desde cero, partiendo de un problema real hasta llegar a la definición de su mercado objetivo y modelo de negocio.
+A lo largo del ejercicio se evaluará la claridad del problema, la propuesta de valor, la coherencia de la solución y el entendimiento del mercado.
+
+\vspace{0.5cm}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\section*{1. Definición de la empresa}
+
+Antes de definir el problema y el producto, es necesario establecer el contexto general del proyecto y la identidad de la empresa que lo desarrollará.
+
+\textbf{Nombre de la empresa}
+
+Define el nombre de la empresa que desarrollará el producto.  
+El nombre puede ser provisional y cambiar más adelante.
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Nombre de la empresa.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Misión}
+
+La misión describe el propósito actual de la empresa: qué hace, para quién lo hace y cómo crea valor.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Cuál es la razón de existir de la empresa?
+    \item ¿Qué problema general busca resolver?
+    \item ¿A qué tipo de clientes sirve?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Declaración de misión.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Visión}
+
+La visión describe el futuro deseado de la empresa y hacia dónde quiere llegar.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Cómo debería verse la empresa en 5 a 10 años?
+    \item ¿Qué impacto quiere tener en el mercado o la sociedad?
+    \item ¿Qué la diferenciará de otras empresas en el futuro?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Declaración de visión.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Oportunidad de mercado}
+
+Describe brevemente la oportunidad que existe en el mercado y por qué es relevante.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Qué necesidad no está siendo bien atendida?
+    \item ¿Por qué este es un buen momento para atacar este problema?
+    \item ¿Qué tendencia, cambio tecnológico o contexto habilita esta oportunidad?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Descripción clara de la oportunidad de mercado.
+\end{itemize}
+
+\vspace{0.3cm}
+
+
+
+\section*{2. Definición del problema}
+
+Identifica un problema real que valga la pena resolver.
+
+Reflexiona sobre las siguientes preguntas:
+\begin{itemize}
+    \item ¿Qué tan doloroso o relevante es este problema para quien lo sufre?
+    \item ¿Con qué frecuencia ocurre?
+    \item ¿Las personas estarían dispuestas a pagar por resolverlo?
+    \item ¿El valor que genera la solución es inmediato y tangible?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Descripción clara y concisa del problema a resolver.
+\end{itemize}
+
+\vspace{0.3cm}
+
+%------------------------------------------------
+
+\section*{3. Identificación de los usuarios}
+
+Analiza quiénes son las personas involucradas en el problema y su relación con la compra del producto.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Quién sufre directamente el problema?
+    \item ¿Es la misma persona quien paga por la solución?
+    \item ¿Qué características demográficas, sociales o profesionales tienen?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item \textbf{User Persona}: definición con sus características del  usuario final que experimenta el problema.
+    \item \textbf{Buyer Persona}: persona o entidad que toma la decisión de compra (puede o no ser el user-persona).
+\end{itemize}
+
+
+\vspace{0.3cm}
+
+%------------------------------------------------
+
+\section*{4. Definición de la solución}
+
+Propón una solución concreta al problema definido.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Cuál es tu producto o servicio?
+    \item ¿Cómo resuelve el problema identificado?
+    \item ¿En qué escenarios podría no funcionar?
+    \item ¿Qué supuestos estás haciendo?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Definición del producto.
+    \item Lista de características principales.
+\end{itemize}
+
+\vspace{0.3cm}
+
+%------------------------------------------------
+
+\section*{5. Diferenciadores de mercado}
+
+Propón una solución concreta al problema definido.
+
+Reflexiona:
+\begin{itemize}
+    \item \textbf{¿Cuál es el beneficio de comprar conmigo en vez de mis competidores?}
+    \item \textbf{¿Cuál es su diferenciador de producto?}   
+    \item \textbf{¿qué hago diferente a otros o que me hace especial?}         
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Definición de diferenciadores
+\end{itemize}
+
+\vspace{0.3cm}
+
+
+%------------------------------------------------
+
+\section*{6. User Journey}
+
+Describe el recorrido completo del usuario desde que identifica el problema hasta que obtiene valor del producto.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Cómo descubre el usuario tu producto?
+    \item ¿Cómo lo prueba o adopta?
+    \item ¿Cómo interactúa con él?
+    \item ¿En qué punto obtiene valor?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Descripción paso a paso del user journey.
+\end{itemize}
+
+\vspace{0.3cm}
+
+%------------------------------------------------
+
+\section*{7. Modelo de negocio}
+
+Define cómo el producto genera y captura valor.
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Business Model Canvas que incluya:
+    \begin{itemize}
+        \item Propuesta de valor
+        \item Segmentos de clientes
+        \item Canales
+        \item Relación con clientes
+        \item Fuentes de ingresos
+        \item Recursos clave
+        \item Actividades clave
+        \item Socios clave
+        \item Estructura de costos
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.3cm}
+
+%------------------------------------------------
+
+\section*{8. Definición del mercado}
+
+A continuación se describen los conceptos utilizados para estimar el tamaño del mercado de un producto.
+
+\begin{itemize}
+
+    \item \textbf{TAM (Total Addressable Market)}\\
+    Representa el tamaño total del mercado si el producto lograra capturar el \textbf{100\% de la demanda existente}, sin considerar limitaciones geográficas, operativas o de competencia.\\
+    Responde a la pregunta: \textit{¿Cuál es el valor total del mercado si todos los posibles clientes compraran mi producto?}
+
+    \vspace{0.2cm}
+
+    \item \textbf{SAM (Serviceable Available Market)}\\
+    Es la porción del TAM que el producto \textbf{puede atender realmente}, considerando restricciones como ubicación geográfica, idioma, regulaciones o alcance del producto.\\
+    Responde a la pregunta: \textit{¿Qué parte del mercado total puedo servir con mi solución actual?}
+
+    \vspace{0.2cm}
+
+    \item \textbf{SOM (Serviceable Obtainable Market)}\\
+    Es la fracción del SAM que la empresa \textbf{puede capturar de manera realista} en el corto o mediano plazo, considerando competencia, capacidad operativa, marketing y ventas.\\
+    Responde a la pregunta: \textit{¿Qué porcentaje del mercado puedo conquistar de forma realista?}
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\section*{9. Modelo financiero}
+
+El objetivo de esta sección es construir un \textbf{modelo financiero en Excel} que permita entender la viabilidad económica del producto a lo largo del tiempo.
+
+El modelo debe mostrar de forma clara:
+\begin{itemize}
+    \item Cuándo se realizan las inversiones iniciales y recurrentes.
+    \item En qué periodos ocurren los costos operativos.
+    \item A partir de qué momento se generan ingresos.
+    \item Cómo evolucionan ingresos, costos y utilidad en el tiempo.
+\end{itemize}
+
+\textbf{Lineamientos del modelo:}
+\begin{itemize}
+    \item El modelo debe estar organizado por periodos (mensual o anual).
+    \item Debe incluir supuestos explícitos (precios, crecimiento, costos, etc.).
+    \item Los supuestos deben estar claramente separados de los cálculos.
+\end{itemize}
+
+\textbf{Componentes mínimos del modelo:}
+\begin{itemize}
+    \item Inversión inicial (desarrollo, infraestructura, marketing, etc.).
+    \item Costos fijos y variables.
+    \item Proyección de ingresos.
+    \item Flujo de caja.
+    \item Punto de equilibrio (break-even).
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Archivo en Excel con el modelo financiero.
+    \item Breve explicación de los supuestos utilizados.
+\end{itemize}
+
+El objetivo no es la precisión absoluta, sino demostrar comprensión sobre \textbf{cómo y cuándo el negocio crea valor económico}.
+
+
+%------------------------------------------------
+
+\section*{10. Identidad del producto: nombre y logotipo}
+
+El objetivo de esta sección es definir la \textbf{identidad visual y conceptual del producto}, de manera que sea coherente con el problema, el usuario y la propuesta de valor.
+
+\textbf{Selección del nombre del producto}
+
+Reflexiona sobre las siguientes preguntas:
+\begin{itemize}
+    \item ¿El nombre comunica el valor del producto?
+    \item ¿Es fácil de recordar y pronunciar?
+    \item ¿Es coherente con el mercado y el tipo de usuario?
+    \item ¿Transmite confianza, innovación o el atributo principal del producto?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Nombre del producto.
+    \item Breve justificación del nombre elegido.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Diseño del logotipo}
+
+El logotipo debe representar visualmente la esencia del producto.
+
+Reflexiona:
+\begin{itemize}
+    \item ¿Qué emociones o valores debe transmitir?
+    \item ¿Dónde se utilizará el logotipo (web, app, redes, presentaciones)?
+    \item ¿Funciona tanto en color como en blanco y negro?
+\end{itemize}
+
+\textbf{Entrega esperada:}
+\begin{itemize}
+    \item Propuesta de logotipo (imagen o boceto).
+    \item Paleta de colores y tipografía (opcional).
+\end{itemize}
+
+El objetivo no es lograr un diseño perfecto, sino construir una identidad \textbf{clara, coherente y alineada con el producto}.
+
+\vspace{0.3cm}
+
+La siguiente liga encontrarás una presentación donde podrás poner la información sobre tu producto para crear un pitch deck de negocios.
+
+\href{https://gamma.app/docs/Diseno-de-producto-3qtwj5t7jasj6bm}{Presentación: Diseño de Producto}
+
+\end{document}
+
+
+
